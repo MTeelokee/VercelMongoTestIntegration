@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 app.use(express.json());
-app.use(express.static(__dirname + "/public/"));
+app.use("/public/images", express.static(path.join(__dirname, "/public/images")));
 app.use(express.urlencoded({ extended: true }));
 require("dotenv").config();
 
