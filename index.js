@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 app.use(express.json());
+app.use(express.static(__dirname + "/public/"));
 app.use(express.urlencoded({ extended: true }));
 require("dotenv").config();
 
@@ -20,9 +21,9 @@ app.get("/public/images/:filename", (req, res) => {
 app.use(cors());
 app.use("/request", userRouter, eventRouter, dateForEventRouter, commentRouter);
 
-app.get('/', (req, res) => {
-  res.send('Hey this is my API running 🥳')
-})
+app.get("/", (req, res) => {
+  res.send("Hey this is my API running 🥳");
+});
 
 const mongoURI = process.env.MONGODB_URI;
 mongoose.connect(mongoURI, { useNewUrlParser: true });
